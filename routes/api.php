@@ -15,5 +15,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+
+
+
+
+
+
+Route::get('/payments', [PaymentController::class, 'index']);
+Route::post('/payments', [PaymentController::class, 'store']);
+Route::post('/payments/penalty/{rentalId}', [PaymentController::class, 'processPenalty']);
+
+Route::apiResource('rental-statuses', RentalStatusController::class);
+
+
     return $request->user();
 });
