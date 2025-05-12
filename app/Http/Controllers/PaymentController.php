@@ -8,13 +8,13 @@ use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
-    // 7.1 Get payment data
+    // 7.1 Get all payment data with car rental details
     public function index()
     {
         return Payment::with('carRental')->get();
     }
 
-    // 7.2 Process rental payment
+    // 7.2 Create a new payment (rental or penalty)
     public function store(Request $request)
     {
         $request->validate([
@@ -45,5 +45,31 @@ class PaymentController extends Controller
         }
 
         return response()->json(['message' => 'No penalty applicable'], 200);
+    }
+
+    // 7.4 Get a single payment by ID
+    public function show($id)
+    {
+        $payment = Payment::with('carRental')->find($id);
+
+        if (!$payment) {
+            return response()->json(['message' => 'Payment not found'], 404);
+        }
+
+        return response()->json($payment, 200);
+    }
+
+    // 7.5 Delete a payment
+    public function destroy($id)
+    {
+        $payment = Payment::find($id);
+
+        if (!$payment) {
+            return response()->json(['message' => 'Payment not found'], 404);
+        }
+
+        $payment->delete();
+
+        return response()->json(['message' => 'Payment deleted successfully'], 200);
     }
 }
