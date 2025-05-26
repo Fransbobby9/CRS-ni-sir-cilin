@@ -336,7 +336,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"car_id\": 1,\r\n  \"customer_id\": 7,\r\n  \"rental_date\": \"2025-06-01\",\r\n  \"return_date\": \"2025-06-02\",\r\n  \"rental_price\": 1200,\r\n  \"status\": \"completed\"\r\n}\r\n",
+							"raw": "{\r\n    \"customer_id\": 1,\r\n    \"agent_id\": 1,\r\n    \"car_id\": 1,\r\n    \"rental_start_date\": \"2025-05-26\",  // Ensure this field is included\r\n    \"return_date\": \"2025-05-31\",    // Ensure this field is included\r\n    \"rental_price\": 100.00,\r\n    \"rental_date\": \"2025-05-26\",         // Ensure this field is included\r\n    \"status\": \"completed\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -367,8 +367,39 @@
 				{
 					"name": "Delete Rental",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{baseurl}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
-						"header": []
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Jane Doe\",\r\n  \"email\": \"jande@example.com\",\r\n  \"phone\": \"555-1234\",\r\n  \"address\": \"456 Elm Street\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/car-rentals/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"car-rentals",
+								"1"
+							]
+						}
 					},
 					"response": []
 				}
@@ -446,7 +477,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"Jane Doe\",\r\n  \"email\": \"jande@example.com\",\r\n  \"phone\": \"555-1234\",\r\n  \"address\": \"456 Elm Street\"\r\n}\r\n",
+							"raw": "{\r\n  \"name\": \"Jane Doe\",\r\n  \"email\": \"jande@exdample.com\",\r\n  \"phone\": \"555-1234\",\r\n  \"address\": \"456 Elm Street\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -467,7 +498,7 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "Edit Customer",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -511,7 +542,7 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "Delete Customer",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -577,7 +608,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"John Doe\",\r\n    \"email\": \"john.fdoe@example.com\",\r\n    \"phone\": \"1234567890\",\r\n    \"address\": \"123 Main St, Springfield\"\r\n}",
+							"raw": "{\r\n    \"name\": \"John Doe\",\r\n    \"email\": \"johns.fdoe@example.com\",\r\n    \"phone\": \"1234567890\",\r\n    \"address\": \"123 Main St, Springfield\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -774,7 +805,7 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "Add payment",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -796,7 +827,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"car_rental_id\": 3,        // Replace with an actual car rental ID\r\n    \"amount\": 200.00,\r\n    \"type\": \"rental\",          // Options: \"rental\" or \"penalty\"\r\n    \"payment_date\": \"2023-05-25\"\r\n}",
+							"raw": "{\r\n    \"car_rental_id\": 2,        // Replace with an actual car rental ID\r\n    \"amount\": 200.00,\r\n    \"type\": \"rental\",          // Options: \"rental\" or \"penalty\"\r\n    \"payment_date\": \"2023-05-25\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -814,22 +845,6 @@
 								""
 							]
 						}
-					},
-					"response": []
-				},
-				{
-					"name": "New Request",
-					"request": {
-						"method": "GET",
-						"header": []
-					},
-					"response": []
-				},
-				{
-					"name": "New Request",
-					"request": {
-						"method": "GET",
-						"header": []
 					},
 					"response": []
 				}
@@ -1088,7 +1103,7 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "Edit Statuses",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -1110,7 +1125,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": " {\"name\": \"Availabdle\"  // Example status name\r\n \r\n }",
+							"raw": " {\"name\": \"Availabdlde\"  // Example status name\r\n \r\n }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1132,7 +1147,7 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "Delete Statuses",
 					"request": {
 						"auth": {
 							"type": "bearer",

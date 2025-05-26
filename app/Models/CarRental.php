@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Model\Car;
 
 class CarRental extends Model
 {
@@ -14,10 +13,10 @@ class CarRental extends Model
     protected $fillable = [
         'car_id',
         'customer_id',
-        'rental_date',
-        'return_date',
+        'rental_start_date',
+        'rental_end_date',
         'rental_price',
-        'status',
+        // 'status', // Uncomment if you have a status field in the migration
     ];
 
     // Define hidden attributes for security purposes
@@ -35,5 +34,10 @@ class CarRental extends Model
     public function customer()
     {
         return $this->belongsTo(Customer::class);
+    }
+
+    public function agent()
+    {
+        return $this->belongsTo(Agent::class); // Add this if you want to access the agent
     }
 }

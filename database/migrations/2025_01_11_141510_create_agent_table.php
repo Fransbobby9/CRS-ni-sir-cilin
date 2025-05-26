@@ -9,14 +9,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('agents', function (Blueprint $table) {
-            $table->id(); // This already sets 'id' as PRIMARY KEY
-            $table->string('name');
-            $table->timestamps();
+            $table->id(); // Primary key
+            $table->string('name'); // Agent's name
+            $table->string('email')->unique(); // Unique email for the agent
+            $table->timestamps(); // created_at and updated_at
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('agents');
+        Schema::dropIfExists('agents'); // Drop the agents table
     }
 };
